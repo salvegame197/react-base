@@ -1,5 +1,6 @@
 import React from 'react';
-import { Switch, Redirect, Route } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export default function MyRoute({ component: Component, isClosed, ...rest }) {
   const isLoggedIn = false;
@@ -14,3 +15,13 @@ export default function MyRoute({ component: Component, isClosed, ...rest }) {
   // eslint-disable-next-line react/jsx-props-no-spreading
   return <Route {...rest} component={Component} />;
 }
+
+MyRoute.defaultProps = {
+  isClosed: false,
+};
+
+MyRoute.propTypes = {
+  component: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
+    .isRequired,
+  isClosed: PropTypes.bool,
+};
